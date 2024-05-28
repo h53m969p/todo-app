@@ -30,11 +30,11 @@
 
 ### 優先度別表示
 ![優先度別表示画面](src/main/resources/static/img/listPriority.png)
-タスク一覧画面のPriorityのカラムから指定した優先度のタスクのみを表示する。<br><br><br>
+タスク一覧画面のPriorityのドロップダウンリストから指定した優先度のタスクのみを表示する。<br><br><br>
 
 ### カテゴリ別表示
 ![カテゴリ別表示画面](src/main/resources/static/img/listCategory.png)
-タスク一覧画面のCategoryのカラムから指定したカテゴリのタスクのみ表示する。<br><br><br>
+タスク一覧画面のCategoryのドロップダウンリストから指定したカテゴリのタスクのみ表示する。<br><br><br>
 
 ## 機能一覧
 1. **ユーザー登録・ログイン**
