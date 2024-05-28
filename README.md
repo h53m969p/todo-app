@@ -5,7 +5,7 @@
 
 ## デモ
 ### ログイン画面(login.html)
-![ログイン画面](src/main/resources/static/img/Sign-in.png)
+![ログイン画面](src/main/resources/static/img/sign-in.png)
 初回は、「Sign up」からアカウントを作成する。<br><br><br>
 
 ### アカウント登録(register.html)
