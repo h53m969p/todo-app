@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thmeleaf.org">
 <head>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" />
-	<title>Login | Todo</title>
+	<title>Sign in | Todo</title>
 	<style>
 		body {
 			display: flex;
@@ -21,7 +21,7 @@
 <body>
 	<div class="container">
 		<div class="card">
-			<h1 class="text-center mb-4">Login</h1>
+			<h1 class="text-center mb-4">Sign in</h1>
 			<div class="alert alert-danger" role="alert" th:if="${param.error}" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></div>
 			<form th:action="@{/login}" method="post">
 				<div class="form-group">
@@ -33,7 +33,7 @@
 					<input type="password" class="form-control" style="border-radius: 50px;" id="password" name="password" placeholder="your password"/>
 				</div>
 				<div>
-					<button type="submit" class="btn btn-primary btn-block" style="border-radius: 50px;">Login</button>
+					<button type="submit" class="btn btn-primary btn-block" style="border-radius: 50px;">Sign in</button>
 				</div>
 				<div class="text-center mt-3">
 					<a th:href="@{/register}" class="btn btn-secondary btn-block mt-3" style="border-radius: 50px;">Sign up</a>
