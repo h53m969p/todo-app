@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thmeleaf.org">
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+	<title>New Task | ToDo</title>
+</head>
+<body>
+	<div class="container">
+	<h1 th:text="${task.id} == null ? 'New Task' : 'Update Task'"></h1>
+	<form th:action="${task.id} == null ? @{/tasks/create} : @{/tasks/edit}" th:object="${task}" method="post" >
+		<input type="hidden" th:field="*{id}" />
+		<div class="form-group mb-3">
+            <label for="name" class="form-label">Task</label>
+            <input type="text" th:field="*{name}" class="form-control" style="border-radius: 50px;" id="name" required />
+        </div>
+        <div class="form-group mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea th:field="*{description}" class="form-control" style="border-radius: 50px;" id="description"rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select th:field="*{category.id}" class="form-control" style="border-radius: 50px;" id="category" required>
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.category}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="priority">Priority</label>
+            <select th:field="*{priority.id}" class="form-control" style="border-radius: 50px;" id="priority" required>
+                <option th:each="priority : ${priority}" th:value="${priority.id}" th:text="${priority.priority}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="dueDate">Due Date</label>
+            <input type="date" th:field="*{dueDate}" class="form-control" style="border-radius: 50px;" id="dueDate" required/>
+        </div>
+		<div class="text-right">
+			<a th:href="@{/tasks}" class="btn btn-secondary" style="border-radius: 50px;">Cancel</a>
+        	<button type="submit" class="btn btn-primary" style="border-radius: 50px;" th:text="${task.id} == null ? 'Add' : 'Update'"></button>
+		</div>
+	</form>
+	</div>
+</body>
+</html>
