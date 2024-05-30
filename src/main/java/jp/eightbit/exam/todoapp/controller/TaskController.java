@@ -145,7 +145,10 @@ public class TaskController {
 		String username = authentication.getName();
 		List<Task> tasks = taskService.searchTasksByTaskName(username, name);
 		model.addAttribute("tasks", tasks);
-		model.addAttribute("seachName", name);
+		model.addAttribute("searchName", name);
+		
+		User user = userService.findByUsername(username);
+		model.addAttribute("user", user);
 		return "taskList";
 	}
 }
