@@ -36,6 +36,10 @@
 ![カテゴリ別表示画面](src/main/resources/static/img/listCategory.png)
 タスク一覧画面のCategoryのドロップダウンリストから指定したカテゴリのタスクのみ表示する。<br><br><br>
 
+### マイページ(accountPage.html)
+![マイページ画面](src/main/resources/static/img/accountPage.png)
+アイコンの登録と変更、表示名の変更ができる。<br><br><br>
+
 ## 機能一覧
 1. **ユーザー登録・ログイン**
    - アカウント作成機能
@@ -60,54 +64,35 @@
    - タスクに締切日を設定
 <br><br>
 7. **検索機能**
-   - タスク名で検索<br><br><br><br>
+   - タスク名で検索
+<br><br>
+8. **マイページ**
+   - アイコンと表示名の変更<br><br><br><br>
 
 ## MySQLセットアップ
 以下のクエリをMySQLで実行してください。
  ```sql
-    CREATE DATABASE todoapp;
+CREATE DATABASE todoapp;
 
-    USE todoapp;
+CREATE TABLE user (
+    id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username varchar(50) NOT NULL,
+    password varchar(100) NOT NULL,
+    email varchar(100) NOT NULL,
+    role varchar(255) DEFAULT 'USER',
+    icon tinytext,
+    screenname varchar(255)
+);
 
-    CREATE TABLE User (
-        id BIGINT AUTO_INCREMENT PRIMARY KEY,
-        username VARCHAR(50) NOT NULL,
-        password VARCHAR(100) NOT NULL,
-        email VARCHAR(100) NOT NULL,
-        role VARCHAR(255) DEFAULT 'USER'
-    );
+CREATE TABLE category (
+    id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    category varchar(255) NOT NULL
+);
 
-    CREATE TABLE Task (
-        id BIGINT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(100) NOT NULL,
-        description TEXT,
-        category VARCHAR(50),
-        priority VARCHAR(20),
-        dueDate DATE,
-        completed BOOLEAN,
-        user_id BIGINT,
-        FOREIGN KEY (user_id) REFERENCES User(id)
-    );
-
-    CREATE TABLE category (
-        id BIGINT AUTO_INCREMENT PRIMARY KEY,
-        category VARCHAR(255) NOT NULL
-    );
-    
-    INSERT INTO category (category) VALUES ('仕事'), ('学校'), ('プライベート');
-
-    CREATE TABLE priority (
-        id BIGINT AUTO_INCREMENT PRIMARY KEY,
-        priority VARCHAR(255) NOT NULL
-    );
-    
-    INSERT INTO priority (priority) VALUES ('高'), ('中'), ('低');
-
-
-    INSERT INTO Task (name, description, category, priority, dueDate, completed, user_id) VALUES 
-    ('Sample Task 1', 'This is a sample task description.', 'Work', 'High', '2024-12-31', false, 1),
-    ('Sample Task 2', 'This is another sample task description.', 'Personal', 'Medium', '2024-11-30', true, 1),
-    ('Javaの学習', 'Java Silverの本を進める', 'Work', 'Medium', '2024-05-31', false, 1);
+CREATE TABLE priority (
+    id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    priority VARCHAR(255) NOT NULL
+);
 ```
 <br><br><br><br>
 
