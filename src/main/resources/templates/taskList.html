@@ -20,6 +20,14 @@
         width: 100%;
         margin-top: 1rem;
     }
+    .filter-group {
+			display: flex;
+			align-items: center;
+			margin-bottom: 1rem;
+	}
+	.filter-group .form-group {
+		margin-right: 1rem;
+	}
     .task-link {
         color: #343a40; /* Bootstrapの黒色 */
     }
@@ -69,6 +77,23 @@
     <form class="search-form" th:action="@{/tasks/search}" method="get">
         <input class="form-control" type="search" name="name" placeholder="search tasks..." required style="border-radius: 50px;">
         <button class="btn btn-outline-secondary ml-2" type="submit" style="border-radius: 50px;"><i class="bi bi-search"></i></button>
+    </form>
+    <!-- フィルター -->
+    <form th:action="@{/tasks}" method="get" class="filter-group">
+        <div class="form-group">
+            <label for="priority">Priority:</label>
+            <select class="form-control" id="priority" name="priority" onchange="this.form.submit()" style="border-radius: 50px;">
+                <option th:text="'All'" th:selected="${selectedPriority == 'All'}">All</option>
+                <option th:each="priority : ${priorities}" th:value="${priority.priority}" th:text="${priority.priority}" th:selected="${selectedPriority == priority.priority}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select class="form-control" id="category" name="category" onchange="this.form.submit()" style="border-radius: 50px;">
+                <option th:text="'All'" th:selected="${selectedCategory == 'All'}">All</option>
+                <option th:each="category : ${categories}" th:value="${category.category}" th:text="${category.category}" th:selected="${selectedCategory == category.category}"></option>
+            </select>
+        </div>
     </form>
     <!-- タスクテーブル -->
     <table class="table table-bordered">
