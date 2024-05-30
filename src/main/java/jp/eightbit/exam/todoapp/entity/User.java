@@ -25,6 +25,10 @@ public class User {
 	private String password;
 	//ロール
 	private String role;
+	//表示名
+	private String screenname;
+	//アイコン
+	private String icon;
 	
 	public Long getId() {
 		return id;
@@ -72,6 +76,22 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String base64Image) {
+		this.icon = base64Image;
+	}
+
+	public String getScreenname() {
+		return screenname;
+	}
+
+	public void setScreenname(String screenname) {
+		this.screenname = screenname;
 	}
 
 	@OneToMany(mappedBy = "user")

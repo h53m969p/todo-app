@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jp.eightbit.exam.todoapp.entity.Category;
 import jp.eightbit.exam.todoapp.entity.Priority;
 import jp.eightbit.exam.todoapp.entity.Task;
+import jp.eightbit.exam.todoapp.entity.User;
 import jp.eightbit.exam.todoapp.service.TaskService;
 import jp.eightbit.exam.todoapp.service.UserService;
 
@@ -43,6 +44,14 @@ public class TaskController {
 	        model.addAttribute("selectedCategory", category);
 	        model.addAttribute("priorities", taskService.findAllPriority());
 	        model.addAttribute("categories", taskService.findAllCategory());
+	        
+	        //ユーザー情報を追加
+	        User user = userService.findByUsername(username);
+	        if (user != null) {
+	        	model.addAttribute("user", user);
+	        } else {
+	        	model.addAttribute("error", "not found user infomation");
+	        }
 
 	        return "taskList";
 	}

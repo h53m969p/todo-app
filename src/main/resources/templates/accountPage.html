@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thmeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <title>Account Page | ToDo</title>
+    <style>
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .icon {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Account Page</h1>
+    <form th:action="@{/account}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="icon-container">
+                <img th:if="${user.icon != null}" th:src="@{${user.icon}}" class="icon" />
+                <img th:if="${user.icon == null}" th:src="@{/img/default-icon.jpg}" class="icon" />
+            </div>
+            <label for="iconFile">Icon</label>
+            <input type="file" class="form-control" id="iconFile" name="iconFile" accept="image/*" style="border-radius: 50px;">
+        </div>
+        <div class="form-group">
+            <label for="screenname">Screen Name</label>
+            <input type="text" class="form-control" id="screenname" name="screenname" th:value="${user.screenname}" style="border-radius: 50px;">
+        </div>
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-primary mr-2" style="border-radius: 50px;">Update</button>
+            <a th:href="@{/tasks}" class="btn btn-secondary" style="border-radius: 50px;">Cancel</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

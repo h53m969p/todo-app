@@ -1,6 +1,5 @@
 package jp.eightbit.exam.todoapp.service;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import jakarta.transaction.Transactional;
 import jp.eightbit.exam.todoapp.entity.LoginUserDetails;
 import jp.eightbit.exam.todoapp.entity.User;
@@ -55,5 +53,17 @@ public class UserService implements UserDetailsService {
 		Optional<User> checkuser = Optional.ofNullable(findByUsername(username));
 		return checkuser.map(user -> new LoginUserDetails(user))
 				.orElseThrow(() -> new UsernameNotFoundException("username not found."));	
+	}
+
+	//マイページでアイコンを追加する
+	@Transactional
+	public void updateUser(User user) {
+		User existingUser = userRepository.findById(user.getId()).orElseThrow(() -> new UsernameNotFoundException("User not found."));
+        existingUser.setUsername(user.getUsername());
+        existingUser.setScreenname(user.getScreenname());
+        if (user.getIcon() != null) {
+            existingUser.setIcon(user.getIcon());
+        }
+        userRepository.save(existingUser);
 	}
 }
