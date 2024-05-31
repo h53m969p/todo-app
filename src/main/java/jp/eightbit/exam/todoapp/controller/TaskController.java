@@ -146,6 +146,8 @@ public class TaskController {
 		List<Task> tasks = taskService.searchTasksByTaskName(username, name);
 		model.addAttribute("tasks", tasks);
 		model.addAttribute("searchName", name);
+		model.addAttribute("priorities", taskService.findAllPriority());
+		model.addAttribute("categories", taskService.findAllCategory());
 		
 		User user = userService.findByUsername(username);
 		model.addAttribute("user", user);
