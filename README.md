@@ -73,6 +73,7 @@
 以下のクエリをMySQLで実行してください。
  ```sql
 CREATE DATABASE todoapp;
+USE todoapp;
 
 CREATE TABLE user (
     id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -84,6 +85,20 @@ CREATE TABLE user (
     screenname varchar(255)
 );
 
+CREATE TABLE task (
+    id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name varchar(100) NOT NULL,
+    description text,
+    completed tinyint(1),
+    user_id bigint,
+    due_date date,
+    category_id bigint,
+    priority_id bigint,
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    FOREIGN KEY (category_id) REFERENCES category(id),
+    FOREIGN KEY (priority_id) REFERENCES priority(id)
+);
+
 CREATE TABLE category (
     id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
     category varchar(255) NOT NULL
@@ -93,6 +108,14 @@ CREATE TABLE priority (
     id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     priority VARCHAR(255) NOT NULL
 );
+
+INSERT INTO category (category) VALUES ('仕事');
+INSERT INTO category (category) VALUES ('学校');
+INSERT INTO category (category) VALUES ('プライベート');
+
+INSERT INTO priority (priority) VALUES ('高');
+INSERT INTO priority (priority) VALUES ('中');
+INSERT INTO priority (priority) VALUES ('低');
 ```
 <br><br><br><br>
 
