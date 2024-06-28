@@ -7,6 +7,11 @@ plugins {
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
+apply plugin: "war"
+tasks.war {
+    archiveFileName = 'todoapp.war'
+}
+
 java {
 	sourceCompatibility = '17'
 }
@@ -20,11 +25,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'mysql:mysql-connector-java:8.4.0'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
 
 tasks.named('test') {
